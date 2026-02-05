@@ -1,4 +1,4 @@
-import { Home, Headphones, FileText } from 'lucide-react';
+import { Home, Headphones } from 'lucide-react';
 
 interface NavigationProps {
   currentPage: string;
@@ -9,7 +9,6 @@ export default function Navigation({ currentPage, onNavigate }: NavigationProps)
   const navItems = [
     { id: 'home', icon: Home, label: 'Home' },
     { id: 'playlists', icon: Headphones, label: 'Playlists' },
-    { id: 'reviews', icon: FileText, label: 'Album Reviews' },
   ];
 
   return (

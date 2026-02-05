@@ -30,6 +30,16 @@ function App() {
       <div className="relative z-10">
         <Navigation currentPage={currentPage} onNavigate={setCurrentPage} />
         <main>{renderPage()}</main>
+        <footer className="px-6 pb-10">
+          <div className="max-w-4xl mx-auto">
+            <button
+              onClick={() => setCurrentPage('reviews')}
+              className="text-sm font-light text-gray-600 hover:text-pink-400/80 transition-colors duration-300"
+            >
+              album reviews
+            </button>
+          </div>
+        </footer>
       </div>
     </div>
   );

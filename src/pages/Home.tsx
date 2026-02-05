@@ -1,24 +1,24 @@
 export default function Home() {
   const featuredPlaylists = [
     {
-      title: 'drift mode',
-      description: 'smooth flows for late-night focus sessions',
-      spotifyId: '5r057Nl6g5DrsklejRj22x',
+      title: 'pfs',
+      description: '',
+      spotifyId: '54iz2xTfLA0l78nBmK0972',
     },
     {
-      title: 'indie flow state',
-      description: 'instrumental energy for deep work',
-      spotifyId: '1Gqj6NyNdhsBx0o0b4Nw18',
+      title: 'unlimited',
+      description: '',
+      spotifyId: '1ZtjlCoto84FYzC40zO48U',
     },
     {
-      title: 'midnight frequency',
-      description: 'when the night feels infinite',
-      spotifyId: '6Skq6E8UZXvMz8rGyffPbp',
+      title: 'burn+ vibes',
+      description: '',
+      spotifyId: '1T12xrEWVzqpGSwvGA7oYu',
     },
     {
-      title: 'outsidee',
-      description: 'fresh air, open roads, good vibes',
-      spotifyId: '1SqHYqwT17HBnt4nrVh4da',
+      title: 'silkncolognesilkncologne',
+      description: '',
+      spotifyId: '1DmKJDVkBstrL4bDJdHEXE',
     },
   ];
 
