@@ -4,21 +4,31 @@ export default function Home() {
       title: 'pfs',
       description: '',
       spotifyId: '54iz2xTfLA0l78nBmK0972',
+      embedHeight: 152,
     },
     {
       title: 'unlimited',
       description: '',
       spotifyId: '1ZtjlCoto84FYzC40zO48U',
+      embedHeight: 152,
     },
     {
       title: 'burn+ vibes',
       description: '',
       spotifyId: '1T12xrEWVzqpGSwvGA7oYu',
+      embedHeight: 152,
     },
     {
       title: 'silkncolognesilkncologne',
       description: '',
       spotifyId: '1DmKJDVkBstrL4bDJdHEXE',
+      embedHeight: 152,
+    },
+    {
+      title: 'hype rocky',
+      description: '',
+      spotifyId: '5ObDq6Umyi8QGE6cPx7nDl',
+      embedHeight: 352,
     },
   ];
 
@@ -64,7 +74,7 @@ export default function Home() {
                     style={{ borderRadius: '12px' }}
                     src={`https://open.spotify.com/embed/playlist/${playlist.spotifyId}?utm_source=generator`}
                     width="100%"
-                    height="152"
+                    height={playlist.embedHeight ?? 152}
                     frameBorder="0"
                     allowFullScreen={true}
                     allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
