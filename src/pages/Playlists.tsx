@@ -35,6 +35,7 @@ export default function Playlists() {
     { title: 'hype bolly/tollywood', spotifyId: '26y4DuyBXfthkB4bcg8oS3', category: 'bollywood' },
     { title: 'देसी प्यार का सौंदर्य', spotifyId: '3H0k5kvdIZbKgudy0pKYXz', category: 'bollywood' },
     { title: 'hindi bops', spotifyId: '4K2tq0dGnQv7uNrOFkiBWU', category: 'bollywood' },
+    { title: 'in bollywood', spotifyId: '0vJyij6TDrO5tBp0zdKSKH', category: 'bollywood' },
 
     { title: 'mass paatalu', spotifyId: '0b0IETDCMBvjfUebZLMWCB', category: 'tollywood' },
     { title: 'sufi pataalu', spotifyId: '115HnPCBlJRfrKUDtd3Sfc', category: 'tollywood' },
@@ -51,6 +52,8 @@ export default function Playlists() {
     { title: 'midnight frequency', spotifyId: '6Skq6E8UZXvMz8rGyffPbp', category: 'vibes' },
     { title: 'vibe rollercoaster 📈📉', spotifyId: '1uYmf41nHmIgo3BBlFakbY', category: 'vibes' },
     { title: 'afrobeats?', spotifyId: '03KUKhu7SYlRWX0MgjDMYW', category: 'vibes' },
+    { title: 'danger', spotifyId: '7Fx5adUmEiXHn29n76sjhC', category: 'vibes' },
+    { title: 'misc sunset afro / rando chill vibes', spotifyId: '1qqHRUq1daeqkSOneODlYX', category: 'vibes' },
   ];
 
   const categories = [
