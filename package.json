@@ -8,7 +8,10 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "typecheck": "tsc --noEmit -p tsconfig.app.json"
+    "typecheck": "tsc --noEmit -p tsconfig.app.json",
+    "spotify:auth:url": "node scripts/spotify-auth.mjs auth-url",
+    "spotify:auth:exchange": "node scripts/spotify-auth.mjs exchange",
+    "spotify:sync": "node scripts/sync-spotify-playlists.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.57.4",

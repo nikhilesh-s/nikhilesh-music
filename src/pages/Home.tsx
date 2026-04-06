@@ -1,37 +1,6 @@
-export default function Home() {
-  const featuredPlaylists = [
-    {
-      title: 'pfs',
-      description: '',
-      spotifyId: '54iz2xTfLA0l78nBmK0972',
-      embedHeight: 152,
-    },
-    {
-      title: 'unlimited',
-      description: '',
-      spotifyId: '1ZtjlCoto84FYzC40zO48U',
-      embedHeight: 152,
-    },
-    {
-      title: 'burn+ vibes',
-      description: '',
-      spotifyId: '1T12xrEWVzqpGSwvGA7oYu',
-      embedHeight: 152,
-    },
-    {
-      title: 'silkncolognesilkncologne',
-      description: '',
-      spotifyId: '1DmKJDVkBstrL4bDJdHEXE',
-      embedHeight: 152,
-    },
-    {
-      title: 'hype rocky',
-      description: '',
-      spotifyId: '5ObDq6Umyi8QGE6cPx7nDl',
-      embedHeight: 352,
-    },
-  ];
+import { featuredPlaylists } from '../data/playlists';
 
+export default function Home() {
   return (
     <div className="min-h-screen pt-32 pb-20 px-6">
       <div className="max-w-4xl mx-auto">

@@ -1,73 +1,12 @@
 import { useState } from 'react';
-
-type Category = 'all' | 'single-artist' | 'song-based' | 'bollywood' | 'tollywood' | 'vibes';
-
-interface Playlist {
-  title: string;
-  spotifyId: string;
-  category: Category;
-}
+import { playlistFilters, playlistsPageItems, type PlaylistFilter } from '../data/playlists';
 
 export default function Playlists() {
-  const [selectedCategory, setSelectedCategory] = useState<Category>('all');
-
-  const playlists: Playlist[] = [
-    { title: 'cloudy rocky', spotifyId: '3vbH9PSznBzY6gB3NdgUU9', category: 'single-artist' },
-    { title: 'tecca merchant 🤓☝🏾', spotifyId: '4V1x3xaaMSq30P6Tv0fcRx', category: 'single-artist' },
-    { title: 'bandits', spotifyId: '1Z3dQQp1MfohVu6KSWmBdP', category: 'single-artist' },
-    { title: 'cHase sHakur', spotifyId: '3vXqN481qLojxVnY1MKdpx', category: 'single-artist' },
-
-    { title: 'test of time', spotifyId: '3T7TiVyk3GgaoABrdRGEV2', category: 'song-based' },
-    { title: 'yes', spotifyId: '23EeVuTo5zXt8bfrcY9oAC', category: 'song-based' },
-    { title: 'silkncolognesilkncologne', spotifyId: '1DmKJDVkBstrL4bDJdHEXE', category: 'song-based' },
-    { title: 'unlimited', spotifyId: '1ZtjlCoto84FYzC40zO48U', category: 'song-based' },
-    { title: 'outsidee', spotifyId: '1SqHYqwT17HBnt4nrVh4da', category: 'song-based' },
-    { title: 'yamborghini 🐂', spotifyId: '4mfi177VOFoFw0EG8XakTa', category: 'song-based' },
-    { title: 'dumbo 😛', spotifyId: '4VJmdm3a6rXJdyr0OmceYn', category: 'song-based' },
-    { title: 'hawktuah matata', spotifyId: '4ZBSvBigtliV6cEdx9QoCr', category: 'song-based' },
-    { title: 'my lil demon', spotifyId: '2XAKVhEtU61A5nMTbvCZ94', category: 'song-based' },
-    { title: 'burn+ vibes', spotifyId: '1T12xrEWVzqpGSwvGA7oYu', category: 'song-based' },
-
-    { title: 'war inspired bolly bangers', spotifyId: '2UMNaaaD9nPnmwWWJe9ylT', category: 'bollywood' },
-    { title: 'lit bollyy', spotifyId: '3At3hUSZ7G7vggupik445P', category: 'bollywood' },
-    { title: 'chill bolly/tollywood', spotifyId: '1v5BgDKsYWIZJCTEE5lFT2', category: 'bollywood' },
-    { title: 'dil lagda hai', spotifyId: '6wy9A3ETRJW5DkpibOq4kC', category: 'bollywood' },
-    { title: 'hype bolly/tollywood', spotifyId: '26y4DuyBXfthkB4bcg8oS3', category: 'bollywood' },
-    { title: 'देसी प्यार का सौंदर्य', spotifyId: '3H0k5kvdIZbKgudy0pKYXz', category: 'bollywood' },
-    { title: 'hindi bops', spotifyId: '4K2tq0dGnQv7uNrOFkiBWU', category: 'bollywood' },
-    { title: 'danger', spotifyId: '0vJyij6TDrO5tBp0zdKSKH', category: 'bollywood' },
-
-    { title: 'mass paatalu', spotifyId: '0b0IETDCMBvjfUebZLMWCB', category: 'tollywood' },
-    { title: 'sufi pataalu', spotifyId: '115HnPCBlJRfrKUDtd3Sfc', category: 'tollywood' },
-
-    { title: 'indie flow state', spotifyId: '1Gqj6NyNdhsBx0o0b4Nw18', category: 'vibes' },
-    { title: 'soft boy vibes', spotifyId: '1UsSqSFPOkovneUT7lBN73', category: 'vibes' },
-    { title: 'east coast lyricism', spotifyId: '6weypY8xXdljAujojxrH76', category: 'vibes' },
-    { title: 'pfs (fweah)', spotifyId: '54iz2xTfLA0l78nBmK0972', category: 'vibes' },
-    { title: 'drift mode', spotifyId: '5r057Nl6g5DrsklejRj22x', category: 'vibes' },
-    { title: 'chill late night rapnb', spotifyId: '6fZ67hdy5pF4WPUH7ZlCyR', category: 'vibes' },
-    { title: 'late night songs 🤑🍾', spotifyId: '6UPqprWFNO1ZILrdwBOPXH', category: 'vibes' },
-    { title: 'wibey', spotifyId: '3Od4zdbgpDhZM4f6ZVnlIt', category: 'vibes' },
-    { title: 'house rnb', spotifyId: '3QsZzay5Y7I2neZd5xUya8', category: 'vibes' },
-    { title: 'midnight frequency', spotifyId: '6Skq6E8UZXvMz8rGyffPbp', category: 'vibes' },
-    { title: 'vibe rollercoaster 📈📉', spotifyId: '1uYmf41nHmIgo3BBlFakbY', category: 'vibes' },
-    { title: 'afrobeats?', spotifyId: '03KUKhu7SYlRWX0MgjDMYW', category: 'vibes' },
-    { title: 'misc sunset afro', spotifyId: '7Fx5adUmEiXHn29n76sjhC', category: 'vibes' },
-    { title: 'rando chill vibes', spotifyId: '1qqHRUq1daeqkSOneODlYX', category: 'vibes' },
-  ];
-
-  const categories = [
-    { id: 'all' as Category, label: 'all playlists' },
-    { id: 'single-artist' as Category, label: 'single-artist' },
-    { id: 'song-based' as Category, label: 'song-based' },
-    { id: 'bollywood' as Category, label: 'bollywood / hindi pop' },
-    { id: 'tollywood' as Category, label: 'tollywood' },
-    { id: 'vibes' as Category, label: 'misc / vibes' },
-  ];
+  const [selectedCategory, setSelectedCategory] = useState<PlaylistFilter>('all');
 
   const filteredPlaylists = selectedCategory === 'all'
-    ? playlists
-    : playlists.filter(p => p.category === selectedCategory);
+    ? playlistsPageItems
+    : playlistsPageItems.filter((playlist) => playlist.category === selectedCategory);
 
   return (
     <div className="min-h-screen pt-32 pb-20 px-6">
@@ -75,11 +14,11 @@ export default function Playlists() {
         <section className="mb-12">
           <h1 className="text-3xl font-light text-gray-400 mb-3">playlists</h1>
           <p className="text-sm font-light text-gray-600 leading-relaxed mb-8">
-            collections of songs for different moods and moments
+            synced from spotify, with manual tags for the sections you care about
           </p>
 
           <div className="flex flex-wrap gap-3">
-            {categories.map((category) => (
+            {playlistFilters.map((category) => (
               <button
                 key={category.id}
                 onClick={() => setSelectedCategory(category.id)}
