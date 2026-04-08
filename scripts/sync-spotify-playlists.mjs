@@ -6,7 +6,7 @@ const ENV_PATH = path.join(ROOT, '.env');
 const OUTPUT_PATH = path.join(ROOT, 'src/data/playlists.generated.json');
 const SPOTIFY_TOKEN_URL = 'https://accounts.spotify.com/api/token';
 const SPOTIFY_ME_URL = 'https://api.spotify.com/v1/me';
-const SPOTIFY_PLAYLISTS_URL = 'https://api.spotify.com/v1/me/playlists?limit=50';
+const SPOTIFY_PLAYLISTS_URL = 'https://api.spotify.com/v1/me/playlists';
 
 function loadEnvFile() {
   if (!fs.existsSync(ENV_PATH)) {
@@ -109,10 +109,13 @@ async function fetchAllPlaylists(accessToken) {
   const me = await fetchSpotifyJson(SPOTIFY_ME_URL, accessToken);
   const onlyOwned = getEnv('SPOTIFY_ONLY_OWNER') === 'true';
   const playlists = [];
-  let nextUrl = SPOTIFY_PLAYLISTS_URL;
+  const limit = 50;
+  let offset = 0;
+  let hasMore = true;
 
-  while (nextUrl) {
-    const page = await fetchSpotifyJson(nextUrl, accessToken);
+  while (hasMore) {
+    const pageUrl = `${SPOTIFY_PLAYLISTS_URL}?limit=${limit}&offset=${offset}`;
+    const page = await fetchSpotifyJson(pageUrl, accessToken);
 
     for (const playlist of page.items ?? []) {
       const ownerId = playlist.owner?.id ?? '';
@@ -133,7 +136,8 @@ async function fetchAllPlaylists(accessToken) {
       }
     }
 
-    nextUrl = page.next;
+    offset += page.items?.length ?? 0;
+    hasMore = offset < (page.total ?? 0) && (page.items?.length ?? 0) > 0;
   }
 
   return playlists;
