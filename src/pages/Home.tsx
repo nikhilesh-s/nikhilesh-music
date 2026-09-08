@@ -1,4 +1,5 @@
 import { featuredPlaylists } from '../data/playlists';
+import PlaylistCard from '../components/PlaylistCard';
 
 export default function Home() {
   return (
@@ -31,28 +32,14 @@ export default function Home() {
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {featuredPlaylists.map((playlist, index) => (
-              <div
-                key={index}
-                className="group relative bg-gradient-to-br from-[#1a1f35]/40 to-[#0f1219]/40 rounded-2xl p-8 transition-all duration-500 hover:from-[#1a1f35]/60 hover:to-[#0f1219]/60 backdrop-blur-sm border border-gray-800/30 hover:border-pink-500/20 hover:shadow-[0_0_30px_rgba(244,114,182,0.1)]"
-              >
-                <h4 className="text-xl font-light text-gray-400 mb-6 transition-colors duration-300 group-hover:text-pink-400/80">
-                  {playlist.title}
-                </h4>
-                <div className="w-full rounded-lg overflow-hidden">
-                  <iframe
-                    style={{ borderRadius: '12px' }}
-                    src={`https://open.spotify.com/embed/playlist/${playlist.spotifyId}?utm_source=generator`}
-                    width="100%"
-                    height={playlist.embedHeight ?? 152}
-                    frameBorder="0"
-                    allowFullScreen={true}
-                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                    loading="lazy"
-                    title={playlist.title}
-                    referrerPolicy="no-referrer"
-                  />
-                </div>
-              </div>
+              <PlaylistCard
+                key={playlist.spotifyId}
+                playlist={playlist}
+                index={index}
+                accent="pink"
+                height={playlist.embedHeight ?? 152}
+                padding="p-8"
+              />
             ))}
           </div>
         </section>
