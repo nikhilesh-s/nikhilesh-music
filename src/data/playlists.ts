@@ -1,5 +1,6 @@
 import generatedPlaylists from './playlists.generated.json';
 import playlistMeta from './playlistMeta.json';
+import ownerIds from './owners.json';
 
 export type PlaylistCategory =
   | 'single-artist'
@@ -45,10 +46,11 @@ export interface SitePlaylist extends GeneratedPlaylist {
 
 const metaById = playlistMeta as Record<string, PlaylistMeta>;
 const sourcePlaylists = generatedPlaylists as GeneratedPlaylist[];
+const OWNER_IDS = new Set<string>(ownerIds);
 
 export const playlists: SitePlaylist[] = sourcePlaylists.map((playlist) => {
   const meta = metaById[playlist.spotifyId] ?? {};
-  const isPublished = playlist.isPublic === true;
+  const isPublished = playlist.isPublic === true && OWNER_IDS.has(playlist.ownerId);
 
   return {
     ...playlist,

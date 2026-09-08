@@ -38,7 +38,6 @@ jobs:
           SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
           SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
           SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
-          SPOTIFY_ONLY_OWNER: ${{ secrets.SPOTIFY_ONLY_OWNER }}
         run: npm run spotify:sync
 
       - name: Commit updated playlist data
