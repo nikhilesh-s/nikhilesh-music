@@ -5,8 +5,9 @@ const ROOT = process.cwd();
 const ENV_PATH = path.join(ROOT, '.env');
 const OUTPUT_PATH = path.join(ROOT, 'src/data/playlists.generated.json');
 const SPOTIFY_TOKEN_URL = 'https://accounts.spotify.com/api/token';
-const SPOTIFY_ME_URL = 'https://api.spotify.com/v1/me';
 const SPOTIFY_PLAYLISTS_URL = 'https://api.spotify.com/v1/me/playlists';
+// Only playlists owned by these Spotify user IDs are ever synced (nikhilesh suravarjjala, nik s).
+const OWNER_IDS = new Set(JSON.parse(fs.readFileSync(path.join(ROOT, 'src/data/owners.json'), 'utf8')));
 
 function loadEnvFile() {
   if (!fs.existsSync(ENV_PATH)) {
@@ -106,9 +107,7 @@ async function fetchSpotifyJson(url, accessToken) {
 }
 
 async function fetchAllPlaylists(accessToken) {
-  const me = await fetchSpotifyJson(SPOTIFY_ME_URL, accessToken);
-  const onlyOwned = getEnv('SPOTIFY_ONLY_OWNER') === 'true';
-  const playlists = [];
+  const playlists = new Map();
   const limit = 50;
   let offset = 0;
   let hasMore = true;
@@ -120,8 +119,8 @@ async function fetchAllPlaylists(accessToken) {
     for (const playlist of page.items ?? []) {
       const ownerId = playlist.owner?.id ?? '';
 
-      if (!onlyOwned || ownerId === me.id) {
-        playlists.push({
+      if (OWNER_IDS.has(ownerId)) {
+        playlists.set(playlist.id, {
           spotifyId: playlist.id,
           title: playlist.name,
           description: playlist.description ?? '',
@@ -140,7 +139,7 @@ async function fetchAllPlaylists(accessToken) {
     hasMore = offset < (page.total ?? 0) && (page.items?.length ?? 0) > 0;
   }
 
-  return playlists;
+  return [...playlists.values()].sort((a, b) => a.title.localeCompare(b.title));
 }
 
 async function main() {

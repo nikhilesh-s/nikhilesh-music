@@ -37,13 +37,13 @@ Add these GitHub repository secrets:
 - `SPOTIFY_CLIENT_ID`
 - `SPOTIFY_CLIENT_SECRET`
 - `SPOTIFY_REFRESH_TOKEN`
-- `SPOTIFY_ONLY_OWNER` with `true` or `false`
 
 Then enable GitHub Actions. The workflow runs daily and can also be triggered manually.
 
 ## Manual curation
 
 - Edit `src/data/playlistMeta.json` to set categories, homepage featured playlists, and embed heights.
+- Only public playlists owned by the Spotify user IDs in `src/data/owners.json` are published. Followed playlists from other accounts are dropped at sync time.
 - Public playlists from Spotify will appear automatically as `uncategorized` unless you tag them in that file.
 - Private playlists are never published to the site even if they exist in synced Spotify data.
 - `showOnPlaylistsPage: false` keeps a playlist available for featured sections without listing it on the main playlists page.
