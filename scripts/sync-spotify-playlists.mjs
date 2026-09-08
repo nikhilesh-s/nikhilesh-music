@@ -130,7 +130,6 @@ async function fetchAllPlaylists(accessToken) {
           ownerId,
           collaborative: playlist.collaborative ?? false,
           trackTotal: playlist.tracks?.total ?? null,
-          syncedAt: new Date().toISOString(),
         });
       }
     }
