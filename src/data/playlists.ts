@@ -22,7 +22,6 @@ interface GeneratedPlaylist {
   ownerId: string;
   collaborative: boolean;
   trackTotal: number | null;
-  syncedAt: string;
 }
 
 interface PlaylistMeta {
