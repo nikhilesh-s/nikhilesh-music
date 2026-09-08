@@ -22,7 +22,7 @@ export default function Navigation({ currentPage, onNavigate }: NavigationProps)
               <button
                 key={item.id}
                 onClick={() => onNavigate(item.id)}
-                className="group relative flex flex-col items-center gap-2 transition-all duration-300"
+                className="group relative flex flex-col items-center gap-2 transition-all duration-300 ease-out hover:-translate-y-0.5 active:scale-95"
                 aria-label={item.label}
               >
                 <Icon
@@ -30,7 +30,7 @@ export default function Navigation({ currentPage, onNavigate }: NavigationProps)
                   strokeWidth={1.5}
                   className={`transition-all duration-300 ${
                     isActive
-                      ? 'text-pink-400/80 drop-shadow-[0_0_8px_rgba(244,114,182,0.5)]'
+                      ? 'text-pink-400/80 drop-shadow-[0_0_8px_rgba(244,114,182,0.5)] scale-110'
                       : 'text-gray-500 group-hover:text-green-400/80 group-hover:drop-shadow-[0_0_8px_rgba(74,222,128,0.5)]'
                   }`}
                 />

@@ -20,13 +20,13 @@ function App() {
   return (
     <div className="min-h-screen bg-[#0a0e1a] relative overflow-x-hidden">
       <div className="fixed inset-0 pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-pink-500/10 rounded-full blur-[120px]" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-green-500/10 rounded-full blur-[120px]" />
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-pink-500/10 rounded-full blur-[120px] drift" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-green-500/10 rounded-full blur-[120px] drift-slow" />
       </div>
 
       <div className="relative z-10">
         <Navigation currentPage={currentPage} onNavigate={setCurrentPage} />
-        <main>{renderPage()}</main>
+        <main key={currentPage} className="page-enter">{renderPage()}</main>
       </div>
     </div>
   );
