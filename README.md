@@ -1,9 +1,50 @@
+<p align="center">
+  <img src="docs/hero.png" alt="Nikhilesh Music homepage" width="100%">
+</p>
+
 # Nikhilesh Music
 
-This site now reads playlist content from Spotify-generated data in `src/data/playlists.generated.json`.
-Manual curation stays in `src/data/playlistMeta.json` so you can keep homepage features and custom categories.
+A personal music site that turns my Spotify playlists into a quiet, browsable diary.
 
-## Local Spotify setup
+**Live:** <https://nikhilesh-music.vercel.app>
+
+## Why
+
+I listen to music almost all the time, and it's one of the easiest ways for me to feel understood without having to explain anything. This site is where I keep the playlists that stuck with me, grouped and featured my way.
+
+## What it does
+
+- A home page with a short intro and hand-picked featured playlists.
+- A playlists page with category filters, built on Spotify embeds so every playlist is playable in place.
+- A daily GitHub Action that pulls my public playlists from the Spotify API and commits the updated data, which triggers a redeploy.
+- Only public playlists owned by my account are published; followed and private playlists are dropped at sync time.
+
+## Design
+
+It should feel like a dark room at night: deep navy, soft grey type, and pink and green glows drifting slowly behind everything. All copy is lowercase and set in one light weight.
+
+| | |
+|---|---|
+| Type | Inter 300 only, lowercase throughout |
+| Color | `#0a0e1a` background · `#9ca3af` text · `#f472b6` pink (home, active) · `#4ade80` green (playlists, hover) |
+| Motion | CSS keyframes only: 0.6 s `cubic-bezier(0.22, 1, 0.36, 1)` staggered card entrance, 18 s / 26 s background drift, all disabled under reduced motion |
+
+## How it works
+
+A Node script authenticates with the Spotify Web API using a stored refresh token and writes `src/data/playlists.generated.json`. Manual curation (categories, featured slots, embed heights) lives separately in `src/data/playlistMeta.json`, so a sync never overwrites my edits. The React app reads both at build time and is hosted on Vercel.
+
+**Stack:** React 18 · TypeScript · Vite · Tailwind CSS · Spotify Web API · GitHub Actions
+
+## Run locally
+
+```bash
+npm install
+npm run dev
+```
+
+The site builds from the committed playlist data, so Spotify credentials are only needed to refresh it.
+
+### Spotify setup
 
 1. Create a Spotify app at `https://developer.spotify.com/dashboard`.
 2. Add `http://127.0.0.1:8888/callback` as a Redirect URI in the Spotify app settings.
@@ -28,7 +69,7 @@ npm run spotify:auth:exchange -- --code=PASTE_CODE_HERE --save
 npm run spotify:sync
 ```
 
-## Ongoing updates
+### Ongoing updates
 
 If your site redeploys on every push, the included GitHub Actions workflow can keep playlist data current automatically.
 
@@ -40,7 +81,7 @@ Add these GitHub repository secrets:
 
 Then enable GitHub Actions. The workflow runs daily and can also be triggered manually.
 
-## Manual curation
+### Manual curation
 
 - Edit `src/data/playlistMeta.json` to set categories, homepage featured playlists, and embed heights.
 - Only public playlists owned by the Spotify user IDs in `src/data/owners.json` are published. Followed playlists from other accounts are dropped at sync time.
